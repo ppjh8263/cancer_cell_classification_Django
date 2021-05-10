@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<h1>Article Index</h1>
+
+<a href="{% url 'cells:new' %}">New</a>
+
+<ul>
+    {% for cell in cells %}
+        <li>
+            <a href="{% url 'cells:detail' cell.pk %}">{{ cell.title }}</a>
+        </li>
+    {% endfor %}
+</ul>
+
+<img src ="{% static 'main.png' %}" alt="보노보노">
+
+{% endblock %}
