@@ -1,19 +1,27 @@
 from django.db import models
-from imagekit.models import ProcessedImageField
-from imagekit.processors import Thumbnail
 
 
 class CellImage(models.Model):
     title = models.CharField(max_length=200)
-    # pub_date = models.DateTimeField('date published')
-    body = models.TextField()
     images = models.ImageField(blank=True, upload_to="images", null=True)
+    # predicted_images = models.ImageField(blank=True, upload_to="predict", null=True)
+
+    # pub_date = models.DateTimeField('date published')
+    # body = models.TextField()
 
     def __str__(self):
         return self.title
 
-    def summary(self):
-        return self.body[:100]
+    def predict(self):
+        # self.predicted_images=predict_model(self.images)
+        pass
+
+
+    # def summary(self):
+    #     return self.body[:100]
+
+
+
 #
 # class Photo(models.Model):
 #     post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
