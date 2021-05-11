@@ -1,57 +1,57 @@
-{% extends 'base.html' %}
-
-{% load static %}
-
-{% block body %}
-
-<h1>cell Detail</h1>
-
-
-<p>PK: {{ cell.pk }}</p>
-<p>제목: {{ cell.title }}</p>
-<p>내용: {{ cell.content }}</p>
-{% if cell.image %}
-    <p>
-        이미지: <img src ="{{ cell.image.url }}" alt = "{{ cell.image}}">
-    </p>>
-{% endif %}
-<p>생성 시각: {{ cell.created_at }}</p>
-<p>수정 시각: {{ cell.updated_at }}</p>
-
-<a href="{% url 'cells:index' %}">Index</a>
-<a href="{% url 'cells:edit' cell.pk %}">Edit</a>
-
-<form action="{% url 'cells:delete' cell.pk %}" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Delete">
-</form>
-
-<!-- 댓글 목록 -->
-<h3>댓글 목록 ({{ cell.comment_set.all.count }})</h3>
-<!-- |length , .count -->
-<ul>
-    {% for comment in cell.comment_set.all %}
-    <li>
-        {{ comment.content }} - {{ comment.created_at }}
-        <a href="{% url 'cells:comments_edit' cell.pk comment.pk %}">Edit</a>
-        <form action="{% url 'cells:comments_delete' cell.pk comment.pk %}" method="POST">
-            {% csrf_token %}
-            <input type="submit" value="Delete">
-        </form>
-    </li>
-    {% empty %}
-    <li>
-        작성된 댓글이 없습니다 :(
-    </li>
-    {% endfor %}
-</ul>
-
-<!-- 댓글 입력창 -->
-<h3>댓글 입력</h3>
-<form action="{% url 'cells:comments_new' cell.pk %}" method="POST">
-    {% csrf_token %}
-    {{ comment_form }}
-    <input type="submit">
-</form>
-
-{% endblock %}
+{#{% extends 'base.html' %}#}
+{##}
+{#{% load static %}#}
+{##}
+{#{% block body %}#}
+{##}
+{#<h1>cell Detail</h1>#}
+{##}
+{##}
+{#<p>PK: {{ cell.pk }}</p>#}
+{#<p>제목: {{ cell.title }}</p>#}
+{#<p>내용: {{ cell.content }}</p>#}
+{#{% if cell.image %}#}
+{#    <p>#}
+{#        이미지: <img src ="{{ cell.image.url }}" alt = "{{ cell.image}}">#}
+{#    </p>>#}
+{#{% endif %}#}
+{#<p>생성 시각: {{ cell.created_at }}</p>#}
+{#<p>수정 시각: {{ cell.updated_at }}</p>#}
+{##}
+{#<a href="{% url 'cells:index' %}">Index</a>#}
+{#<a href="{% url 'cells:edit' cell.pk %}">Edit</a>#}
+{##}
+{#<form action="{% url 'cells:delete' cell.pk %}" method="POST">#}
+{#    {% csrf_token %}#}
+{#    <input type="submit" value="Delete">#}
+{#</form>#}
+{##}
+{#<!-- 댓글 목록 -->#}
+{#<h3>댓글 목록 ({{ cell.comment_set.all.count }})</h3>#}
+{#<!-- |length , .count -->#}
+{#<ul>#}
+{#    {% for comment in cell.comment_set.all %}#}
+{#    <li>#}
+{#        {{ comment.content }} - {{ comment.created_at }}#}
+{#        <a href="{% url 'cells:comments_edit' cell.pk comment.pk %}">Edit</a>#}
+{#        <form action="{% url 'cells:comments_delete' cell.pk comment.pk %}" method="POST">#}
+{#            {% csrf_token %}#}
+{#            <input type="submit" value="Delete">#}
+{#        </form>#}
+{#    </li>#}
+{#    {% empty %}#}
+{#    <li>#}
+{#        작성된 댓글이 없습니다 :(#}
+{#    </li>#}
+{#    {% endfor %}#}
+{#</ul>#}
+{##}
+{#<!-- 댓글 입력창 -->#}
+{#<h3>댓글 입력</h3>#}
+{#<form action="{% url 'cells:comments_new' cell.pk %}" method="POST">#}
+{#    {% csrf_token %}#}
+{#    {{ comment_form }}#}
+{#    <input type="submit">#}
+{#</form>#}
+{##}
+{#{% endblock %}#}

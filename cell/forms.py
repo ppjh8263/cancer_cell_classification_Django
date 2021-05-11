@@ -1,15 +1,15 @@
-from django import forms
-from .models import Cell
-
-class CellForm(forms.ModelForm):
-    class Meta:
-        model = Cell
-        fields = ('title', 'content', 'image',)
-
+# from django import forms
+# # from .models import Cell
 #
-#
-# class CommentForm(forms.ModelForm):
+# class CellForm(forms.ModelForm):
 #     class Meta:
-#         model = Comment
-#         fields = ('content',)
+#         model = Cell
+#         fields = ('title', 'content', 'image',)
 #
+# #
+# #
+# # class CommentForm(forms.ModelForm):
+# #     class Meta:
+# #         model = Comment
+# #         fields = ('content',)
+# #

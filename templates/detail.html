@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="card">
+          <div class="card-body">
+            <h1>{{ cell.title }}</h1>
+            <p>{{ cell.pub_date }}</p>
+            <p>{{ cell.body }}</p>
+            <br>
+            {% if cell.images %}
+                <img src="{{ cell.images.url }}" width="500" height="500">
+            {% endif %}
+            <br>
+            <br>
+            <a href="{% url 'update' blog.id %}"><img src="/static/update.png" alt="수정" width="30"></a>
+            <a href="{% url 'delete' blog.id %}"><img src="/static/delete.png" alt="삭제" width="30"></a>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}
