@@ -34,7 +34,7 @@ def predict(upload_image):
     # print(upload_image)
     # print(type(upload_image))
     img_path="./media/"+str(upload_image)
-    img_result_path=img_path[:-4]+'_predicted.jpg'
+    img_result_path="./media/predicted_images"+str(upload_image)[6:]
     img_real = np.array(Image.open(img_path))
     img = np.array(Image.open(img_path).convert('L'))
     # print(type(img_real))

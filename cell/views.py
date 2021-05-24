@@ -13,7 +13,7 @@ def image_upload(request):
     cellImage = CellImage()
     cellImage.title = request.POST['title']
     cellImage.images = request.FILES['images']
-    cellImage.predicted_image = str(request.FILES['images'])[:-4]+'_predicted.jpg'
+    cellImage.predicted_image = "predicted_images"+str(request.FILES['images'])[6:]
     cellImage.save()
 
     cell_predict.predict(cellImage.images)
