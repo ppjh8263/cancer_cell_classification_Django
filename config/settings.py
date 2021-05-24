@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'cell',
     'login',
+    'cell.cell_predict',
 ]
 
 MIDDLEWARE = [
