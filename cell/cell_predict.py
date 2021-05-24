@@ -41,7 +41,7 @@ def predict(upload_image):
     # print(type(upload_image))
     img_path="./media/images/"+upload_image
     print(img_path)
-    img_result_path="./media/predicted_images/"+upload_image
+    img_result_path="/media/predicted_images/"+upload_image
     print(img_result_path)
     img_real = np.array(Image.open(img_path))
     img = np.array(Image.open(img_path).convert('L'))
@@ -112,7 +112,7 @@ def predict(upload_image):
                       (rect[0] + rect[2], rect[1] + rect[3]), colors[n], 1)
 
     img_real = Image.fromarray(img_real)
-    img_real.save(img_result_path)
+    img_real.save('.'+img_result_path)
     # return Image.fromarray(img_real)
     # return (img_result_path)
 
