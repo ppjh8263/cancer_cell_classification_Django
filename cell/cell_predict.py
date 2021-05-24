@@ -109,9 +109,8 @@ def predict(upload_image):
         cv2.rectangle(img_real, (rect[0], rect[1]),
                       (rect[0] + rect[2], rect[1] + rect[3]), colors[n], 1)
 
-    #     plt.figure(figsize=(100,100))
-    return Image.fromarray(img_real)
-    #img_real = Image.fromarray(img_real)
-    #img_real.save(img_result_path)
+    img_real = Image.fromarray(img_real)
+    img_real.save(img_result_path)
+    # return Image.fromarray(img_real)
     # return (img_result_path)
 

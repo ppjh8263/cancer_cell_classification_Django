@@ -13,11 +13,13 @@ def image_upload(request):
     cellImage = CellImage()
     cellImage.title = request.POST['title']
     cellImage.images = request.FILES['images']
-    #cellImage.predicted_images = "predicted_images"+str(request.FILES['images'])[6:]
+    cell_predict.predict(cellImage.images)
+    cellImage.predicted_images = "predicted_images"+str(request.FILES['images'])[6:]
+    # cellImage.save()
+    # cellImage.predicted_images = cell_predict.predict(cellImage.images)
     cellImage.save()
-    cellImage.predicted_images = cell_predict.predict(cellImage.images)
-    cellImage.save()
-    return redirect('/cell/detail/' + str(cellImage.id))
+    # return redirect('/cell/detail/' + str(cellImage.id))
+    return render(request, 'detail.html')
 
 def detail(request, cell_image_id):
     cell_detail = get_object_or_404(CellImage, pk=cell_image_id)
