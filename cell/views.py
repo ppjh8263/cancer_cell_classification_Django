@@ -13,18 +13,9 @@ def image_upload(request):
     cellImage = CellImage()
     cellImage.title = request.POST['title']
     cellImage.images = request.FILES['images']
+    cellImage.save()
 
     cellImage.predicted_image = cell_predict.predict(cellImage.images)
-    # print(type(request.FILES['images']))
-    # print(type(cellImage.images))
-    cellImage.save()
-    # cellImage.predict()
-    # () = request.FILES['predicted_images']
-    # context = {
-    #     'type_test': type(cellImage.images)
-    # }
-    # cellImage.body = request.POST['body']
-    # cellImage.pub_date = timezone.datetime.now()
 
     return redirect('/cell/detail/' + str(cellImage.id))
 

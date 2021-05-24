@@ -33,9 +33,10 @@ def bwareaopen(imgBW, areaPixels):
 def predict(upload_image):
     # print(upload_image)
     # print(type(upload_image))
-
-    img_real = np.array(Image.open("./media/images/"+str(upload_image)))
-    img = np.array(Image.open("./media/images/"+str(upload_image)).convert('L'))
+    img_path="./media/images/"+str(upload_image)
+    img_result_path=img_path[:-4]+'predicted.jpg'
+    img_real = np.array(Image.open(img_path))
+    img = np.array(Image.open(img_path).convert('L'))
     # print(type(img_real))
     # print(img_real)
     #img = cv2.cvtColor(img_real, cv2.COLOR_BGR2GRAY)
@@ -104,5 +105,6 @@ def predict(upload_image):
 
     #     plt.figure(figsize=(100,100))
 
-    return (img_real)
+    plt.imsave(img_result_path,img_real)
+    return (img_result_path)
 
