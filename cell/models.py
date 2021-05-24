@@ -7,7 +7,7 @@ class CellImage(models.Model):
     # predicted_images = models.ImageField(blank=True, upload_to="predict", null=True)
 
     # pub_date = models.DateTimeField('date published')
-    # body = models.TextField()
+    body = models.TextField()
 
     def __str__(self):
         return self.title
