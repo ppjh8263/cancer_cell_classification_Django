@@ -7,8 +7,8 @@ from keras.models import model_from_json
 from tensorflow.keras.applications.resnet50 import preprocess_input
 
 
-def fn_load_json_weight(list_json='resnet50_Adagrad_lr_0_aug_1_freeze_0%_cv_0_210417.json',
-                        list_weight='resnet50_Adagrad_lr_0_aug_1_freeze_0%_cv_0_210417_weight.h5'):
+def fn_load_json_weight(list_json='model_file.json',
+                        list_weight='weight_file.h5'):
     json_file = open("./model/" + list_json, 'r')
     model = json_file.read()
     json_file.close()
