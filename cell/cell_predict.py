@@ -39,8 +39,10 @@ def bwareaopen(imgBW, areaPixels):
 def predict(upload_image):
     # print(upload_image)
     # print(type(upload_image))
-    img_path="./media/"+str(upload_image)
-    img_result_path="./media/predicted_images"+str(upload_image)[6:]
+    img_path="./media/images/"+upload_image
+    print(img_path)
+    img_result_path="./media/predicted_images/"+upload_image
+    print(img_result_path)
     img_real = np.array(Image.open(img_path))
     img = np.array(Image.open(img_path).convert('L'))
     # print(type(img_real))
