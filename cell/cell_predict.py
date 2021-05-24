@@ -107,5 +107,5 @@ def predict(upload_image):
 
     img_real = Image.fromarray(img_real)
     img_real.save(img_result_path)
-    return (img_result_path)
+    # return (img_result_path)
 
