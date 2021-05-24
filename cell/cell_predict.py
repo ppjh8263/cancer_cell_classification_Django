@@ -26,12 +26,13 @@ def bwareaopen(imgBW, areaPixels):
     contours,_ = cv2.findContours(imgBWcopy.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 
 def predict(upload_image):
-    print(upload_image)
-    print(type(upload_image))
-    img_real = np.array(upload_image)
-    print(type(img_real))
-    print(img_real)
-    img=rgb2gray(img_real)
+    # print(upload_image)
+    # print(type(upload_image))
+
+    img_real = np.array(Image.open(str(upload_image)))
+    img = np.array(Image.open(str(upload_image)).convert('L'))
+    # print(type(img_real))
+    # print(img_real)
     #img = cv2.cvtColor(img_real, cv2.COLOR_BGR2GRAY)
     # img = np.array(upload_image.convert('L'))
     cell_names = ['hela', 'huh-7', 'MCF-7', 'NCI']

@@ -19,7 +19,7 @@ def image_upload(request):
     # print(type(cellImage.images))
     cellImage.save()
     # cellImage.predict()
-    () = request.FILES['predicted_images']
+    # () = request.FILES['predicted_images']
     # context = {
     #     'type_test': type(cellImage.images)
     # }
