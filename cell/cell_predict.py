@@ -24,13 +24,18 @@ def fn_load_json_weight(list_json='model_file.json',
 def bwareaopen(imgBW, areaPixels):
     imgBWcopy = imgBW.copy()
     contours,_ = cv2.findContours(imgBWcopy.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+    for idx in np.arange(len(contours)):
+        area = cv2.contourArea(contours[idx])
+        if(area >= 0 and area <= areaPixels):
+            cv2.drawContours(imgBWcopy, contours, idx, (0,0,0), -1)
+    return imgBWcopy
 
 def predict(upload_image):
     # print(upload_image)
     # print(type(upload_image))
 
-    img_real = np.array(Image.open(str(upload_image)))
-    img = np.array(Image.open(str(upload_image)).convert('L'))
+    img_real = np.array(Image.open("./media/images/"+str(upload_image)))
+    img = np.array(Image.open("./media/images/"+str(upload_image)).convert('L'))
     # print(type(img_real))
     # print(img_real)
     #img = cv2.cvtColor(img_real, cv2.COLOR_BGR2GRAY)
