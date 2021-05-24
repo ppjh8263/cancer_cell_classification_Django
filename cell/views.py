@@ -2,6 +2,7 @@ from time import timezone
 from django.shortcuts import render, redirect
 from .models import CellImage
 from django.shortcuts import render, get_object_or_404
+import cell_predict
 
 def index(request):
     # return HttpResponse("BITS")
@@ -12,10 +13,16 @@ def image_upload(request):
     cellImage = CellImage()
     cellImage.title = request.POST['title']
     cellImage.images = request.FILES['images']
+
+    cellImage.predicted_image = cell_predict.predict(cellImage.images)
+    # print(type(request.FILES['images']))
+    # print(type(cellImage.images))
     cellImage.save()
     # cellImage.predict()
-    # cellImage.predicted_image() = request.FILES['predicted_images']
-
+    () = request.FILES['predicted_images']
+    # context = {
+    #     'type_test': type(cellImage.images)
+    # }
     # cellImage.body = request.POST['body']
     # cellImage.pub_date = timezone.datetime.now()
 

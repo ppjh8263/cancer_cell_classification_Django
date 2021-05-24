@@ -12,6 +12,7 @@ urlpatterns = [
     path('detail/<int:cell_image_id>',
              views.detail, name='detail'),
 
+
     # path('update/<int:cell_image_id>/',
     #     views.update, name='update'),
 
