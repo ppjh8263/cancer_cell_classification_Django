@@ -3,17 +3,22 @@ import numpy as np
 from PIL import Image
 from skimage import morphology
 import tensorflow as tf
-from keras.models import model_from_json
+from tensorflow.keras.models import model_from_json
 from tensorflow.keras.applications.resnet50 import preprocess_input
 
 
+def rgb2gray(img):
+    R, G, B = img[:,:,0], img[:,:,1], img[:,:,2]
+    imgGray = 0.2989 * R + 0.5870 * G + 0.1140 * B
+    return imgGray
+
 def fn_load_json_weight(list_json='model_file.json',
                         list_weight='weight_file.h5'):
-    json_file = open("./model/" + list_json, 'r')
+    json_file = open("./cell/model/" + list_json, 'r')
     model = json_file.read()
     json_file.close()
     model = model_from_json(model)
-    model.load_weights('./model/' + list_weight)
+    model.load_weights('./cell/model/' + list_weight)
     return model
 
 def bwareaopen(imgBW, areaPixels):
@@ -21,13 +26,16 @@ def bwareaopen(imgBW, areaPixels):
     contours,_ = cv2.findContours(imgBWcopy.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 
 def predict(upload_image):
-    model = fn_load_json_weight()
-
+    print(upload_image)
+    print(type(upload_image))
     img_real = np.array(upload_image)
-    img = cv2.cvtColor(img_real, cv2.COLOR_BGR2GRAY)
+    print(type(img_real))
+    print(img_real)
+    img=rgb2gray(img_real)
+    #img = cv2.cvtColor(img_real, cv2.COLOR_BGR2GRAY)
     # img = np.array(upload_image.convert('L'))
     cell_names = ['hela', 'huh-7', 'MCF-7', 'NCI']
-
+    model = fn_load_json_weight()
     colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0)]
 
     font = cv2.FONT_HERSHEY_SIMPLEX

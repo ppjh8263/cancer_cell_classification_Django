@@ -2,7 +2,7 @@ from time import timezone
 from django.shortcuts import render, redirect
 from .models import CellImage
 from django.shortcuts import render, get_object_or_404
-import cell_predict
+import cell.cell_predict as cell_predict
 
 def index(request):
     # return HttpResponse("BITS")
