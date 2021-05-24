@@ -15,13 +15,14 @@ def image_upload(request):
     cellImage.images = request.FILES['images']
     img_name = str(request.FILES['images'])
     img_name = img_name[7:] if "images" in img_name else img_name
-    cellImage.predicted_images = "predicted_images/"+img_name
+    cellImage.predicted_images = "./media/predicted_images/"+img_name
     # cellImage.save()
     # cellImage.predicted_images = cell_predict.predict(cellImage.images)
     cellImage.save()
     cell_predict.predict(img_name)
     # return redirect('/cell/detail/' + str(cellImage.id))
-    return render(request, 'detail.html')
+    cell_detail = get_object_or_404(CellImage)
+    return render(request, 'detail.html',{'cell':cell_detail})
 
 def detail(request, cell_image_id):
     cell_detail = get_object_or_404(CellImage, pk=cell_image_id)
