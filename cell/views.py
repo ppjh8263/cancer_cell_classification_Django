@@ -13,11 +13,10 @@ def image_upload(request):
     cellImage = CellImage()
     cellImage.title = request.POST['title']
     cellImage.images = request.FILES['images']
-    cellImage.predicted_image = "predicted_images"+str(request.FILES['images'])[6:]
+    #cellImage.predicted_images = "predicted_images"+str(request.FILES['images'])[6:]
     cellImage.save()
-
-    cell_predict.predict(cellImage.images)
-
+    cellImage.predicted_images = cell_predict.predict(cellImage.images)
+    cellImage.save()
     return redirect('/cell/detail/' + str(cellImage.id))
 
 def detail(request, cell_image_id):

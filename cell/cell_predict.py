@@ -6,6 +6,12 @@ import tensorflow as tf
 from tensorflow.keras.models import model_from_json
 from tensorflow.keras.applications.resnet50 import preprocess_input
 
+from django.core.files.base import ContentFile
+
+def array2content(array):
+    frame_jpg = cv2.imencode('.jpg', array)
+    file = ContentFile(frame_jpg)
+    return file
 
 def rgb2gray(img):
     R, G, B = img[:,:,0], img[:,:,1], img[:,:,2]
@@ -104,8 +110,8 @@ def predict(upload_image):
                       (rect[0] + rect[2], rect[1] + rect[3]), colors[n], 1)
 
     #     plt.figure(figsize=(100,100))
-
-    img_real = Image.fromarray(img_real)
-    img_real.save(img_result_path)
+    return Image.fromarray(img_real)
+    #img_real = Image.fromarray(img_real)
+    #img_real.save(img_result_path)
     # return (img_result_path)
 
