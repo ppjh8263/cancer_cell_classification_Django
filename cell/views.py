@@ -19,11 +19,11 @@ def image_upload(request):
     # cellImage.save()
     # cellImage.predicted_images = cell_predict.predict(cellImage.images)
     cellImage.save()
-    cell_predict.predict(img_name)
+    cell_result=cell_predict.predict(img_name)
     # return redirect('/cell/detail/' + str(cellImage.id))
     #cell_detail = get_object_or_404(CellImage)
     #return render(request, 'detail.html',{'cell':cell_detail})
-    return render(request, 'detail.html',{'cell':cellImage})
+    return render(request, 'detail.html',{'cell':cellImage,'cell_result':cell_result})
 
 def detail(request, cell_image_id):
     cell_detail = get_object_or_404(CellImage, pk=cell_image_id)

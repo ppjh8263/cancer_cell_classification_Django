@@ -101,7 +101,7 @@ def predict(upload_image):
         preprocess = preprocess_input(predictData, data_format=None)
         predicted_num = model.predict(preprocess)
 
-
+    result_cells=[]
     for i, rect in enumerate(new_rect):
         n = predicted_num[i].argmax()
         #         n=cell_binary[i].index(max(cell_binary[i]))
@@ -110,9 +110,15 @@ def predict(upload_image):
         cv2.putText(img_real, cell_names[n], (rect[0], rect[1]), font, 1, colors[n], 2)
         cv2.rectangle(img_real, (rect[0], rect[1]),
                       (rect[0] + rect[2], rect[1] + rect[3]), colors[n], 1)
+        result_cells.append(cell_names[n])
 
     img_real = Image.fromarray(img_real)
     img_real.save('.'+img_result_path)
+    dic_cells={}
+    for i in cell_names:
+        dic_cells[i]=len(result_cells[result_cells==i])
+    return dic_cells
+
     # return Image.fromarray(img_real)
     # return (img_result_path)
 
