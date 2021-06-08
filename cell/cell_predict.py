@@ -117,7 +117,7 @@ def predict(upload_image):
     dic_cells={}
     dic_cells['total']=len(result_cells)
     for i in cell_names:
-        dic_cells[i]=len(result_cells[result_cells==i])
+        dic_cells[i]=result_cells.count(i)
     return dic_cells
 
     # return Image.fromarray(img_real)
