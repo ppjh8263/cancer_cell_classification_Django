@@ -49,10 +49,14 @@ def predict(upload_image,class_number):
     # print(img_real)
     #img = cv2.cvtColor(img_real, cv2.COLOR_BGR2GRAY)
     # img = np.array(upload_image.convert('L'))
-    cell_names = ['hela', 'huh-7', 'MCF-7', 'NCI']
-    model = fn_load_json_weight()
-    colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0)]
-
+    if(class_number=="4class"):
+        cell_names = ['hela', 'huh-7', 'mcf-7', 'nci']
+        model = fn_load_json_weight()
+        colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0)]
+    elif(class_number=="2class"):
+        cell_names = ['nci', 'll24']
+        model = fn_load_json_weight("nci_ll24.json","nci_ll24.h5")
+        colors = [(255, 0, 0), (0, 255, 0)]
     font = cv2.FONT_HERSHEY_SIMPLEX
 
     img_size = 200
