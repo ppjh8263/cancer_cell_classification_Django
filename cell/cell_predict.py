@@ -36,7 +36,7 @@ def bwareaopen(imgBW, areaPixels):
             cv2.drawContours(imgBWcopy, contours, idx, (0,0,0), -1)
     return imgBWcopy
 
-def predict(upload_image):
+def predict(upload_image,class_number):
     # print(upload_image)
     # print(type(upload_image))
     img_path="./media/images/"+upload_image

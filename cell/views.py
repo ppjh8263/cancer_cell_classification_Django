@@ -11,6 +11,9 @@ def index(request):
 
 def image_upload(request):
     cellImage = CellImage()
+    print("-------------------------------------------")
+    print(str(request.POST['check_class']))
+    print("-------------------------------------------")
     cellImage.title = request.POST['title']
     cellImage.images = request.FILES['images']
     img_name = str(request.FILES['images'])
@@ -19,7 +22,7 @@ def image_upload(request):
     # cellImage.save()
     # cellImage.predicted_images = cell_predict.predict(cellImage.images)
     cellImage.save()
-    cell_result=cell_predict.predict(img_name)
+    cell_result=cell_predict.predict(img_name,str(request.POST['check_class]))
     # return redirect('/cell/detail/' + str(cellImage.id))
     #cell_detail = get_object_or_404(CellImage)
     #return render(request, 'detail.html',{'cell':cell_detail})
